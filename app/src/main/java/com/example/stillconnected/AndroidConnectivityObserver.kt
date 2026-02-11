@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.callbackFlow
 
 class AndroidConnectivityObserver(
     private val context: Context,
-): ConnectivityObserver {
+) : ConnectivityObserver {
 
     private val connectivityManager =
         context.getSystemService<ConnectivityManager>()!!
@@ -28,7 +28,7 @@ class AndroidConnectivityObserver(
                     connectivityManager.getNetworkCapabilities(activeNetwork)
                 val isConnected =
                     capabilities?.hasCapability(
-                NetworkCapabilities.NET_CAPABILITY_VALIDATED
+                        NetworkCapabilities.NET_CAPABILITY_VALIDATED
                     ) == true
                 val status = when {
                     airplaneMode -> ConnectivityObserver.Status.AirplaneMode
@@ -38,13 +38,14 @@ class AndroidConnectivityObserver(
                 trySend(status)
             }
 
-            val networkCallback = object : ConnectivityManager.NetworkCallback(){
+            val networkCallback = object : ConnectivityManager.NetworkCallback() {
                 override fun onCapabilitiesChanged(
                     network: Network,
                     networkCapabilities: NetworkCapabilities
                 ) {
                     sendCurrentState()
                 }
+
                 override fun onAvailable(network: Network) {
                     sendCurrentState()
                 }
@@ -56,7 +57,7 @@ class AndroidConnectivityObserver(
 
             val airplaneModeReceiver = object : BroadcastReceiver() {
                 override fun onReceive(p0: Context?, p1: Intent?) {
-                   sendCurrentState()
+                    sendCurrentState()
                 }
             }
 

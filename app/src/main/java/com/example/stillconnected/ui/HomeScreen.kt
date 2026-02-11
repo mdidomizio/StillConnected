@@ -36,7 +36,7 @@ fun HomeScreen(
 ) {
     val connectivityStatus by viewModel.connectivityStatus.collectAsState()
 
-    val image: Painter = when (connectivityStatus){
+    val image: Painter = when (connectivityStatus) {
         ConnectivityObserver.Status.Lost -> painterResource(R.drawable.no_connection)
         ConnectivityObserver.Status.Available -> painterResource(R.drawable.connected)
         ConnectivityObserver.Status.AirplaneMode -> painterResource(R.drawable.flight_mode)
@@ -49,6 +49,7 @@ fun HomeScreen(
     }
 
     val baseColor = colorResource(id = R.color.surface)
+
     Column(
         modifier = modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -77,7 +78,6 @@ fun HomeScreen(
                 modifier = Modifier.size(300.dp),
                 contentScale = ContentScale.Fit
             )
-
         }
 
         Text(
