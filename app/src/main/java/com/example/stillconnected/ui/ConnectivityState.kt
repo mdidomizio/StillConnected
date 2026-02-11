@@ -1,0 +1,3 @@
+/*package com.example.stillconnected.ui
+
+annotation class ConnectivityState*/
